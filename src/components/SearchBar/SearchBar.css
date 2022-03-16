@@ -1,0 +1,31 @@
+.search-bar {
+  width: 90%;
+  max-width: 40rem;
+  margin: 2rem auto;
+  /* background-color: var(--d-200); */
+  border-radius: var(--border-radius-10);
+
+}
+
+.search {
+  height: 46px;
+  width: 46px;
+  border-radius: 23px;
+  border-width: 2px;
+  padding-left: 36px;
+
+  background: url('../../assets/search-icon.png') no-repeat 12px 6px/ 40px 40px;
+  background-color: var(--d-100);
+
+  cursor: pointer;
+
+  transition-property: width border-radius;
+  transition-duration: 300ms;
+
+  font-size: 1rem;
+}
+
+.search:focus {
+  width: 100%;
+  border-radius: 10px;
+}
