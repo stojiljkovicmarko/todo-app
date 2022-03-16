@@ -158,7 +158,7 @@ const App: React.FC = () => {
         <ChangeMonth
           todos={todos}
           selectedDay={selectedDay}
-          onSetSelectedDay={setSelectedDay}
+          onSetSelectedDay={onSetSelectedDay}
           submitTodo={todoAddHandler}
         />
         <TodoListLayout
