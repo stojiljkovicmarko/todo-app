@@ -10,6 +10,12 @@ html {
   padding: 0;
 }
 
+
+body {
+  background-color: var(--d-100);
+  color: var(--primary-color);
+}
+
 .default-layout {
   width: 90%;
   max-width: 40rem;
@@ -17,11 +23,6 @@ html {
   padding: 1.5rem;
   background-color: var(--d-200);
   border-radius: var(--border-radius-10);
-}
-
-body {
-  background-color: var(--d-100);
-  color: var(--primary-color);
 }
 
 button {

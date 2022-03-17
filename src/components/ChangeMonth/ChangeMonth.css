@@ -143,11 +143,13 @@
   color: var(--interactive-color);
 
   width: fit-content;
-  top: -60%;
-  left: 10%;
+  top: -20%;
+  left: 6%;
   transform: scale(0.5);
   opacity: 0;
-  transition: all 0.2s ease;
+  transition-property: transform opacity top;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in;
 }
 
 .show-add-todo > button:hover {
@@ -157,4 +159,30 @@
 .show-add-todo > button:hover::after {
   transform: scale(1);
   opacity: 1;
+  top: -60%;
+}
+
+.new-todo-enter {
+  opacity: 0;
+  transform: scale(0.4);
+  position: relative;
+}
+
+.new-todo-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms ease-out;
+}
+
+.new-todo-exit {
+  opacity: 1;
+  transform: scale(1);
+  top: 0;
+}
+
+.new-todo-exit-active {
+  top: -10px;
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity 300ms, transform 300ms, top 300ms;
 }

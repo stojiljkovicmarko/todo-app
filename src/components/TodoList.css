@@ -222,3 +222,19 @@ input[type="checkbox"]:checked:hover::before {
 input[type="checkbox"]:checked:hover {
   box-shadow: inset 0 0 0 0.5rem var(--d-200);
 }
+
+
+.todo-enter {
+  opacity: 0;
+}
+.todo-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.todo-exit {
+  opacity: 1;
+}
+.todo-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}

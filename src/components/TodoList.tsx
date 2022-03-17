@@ -1,4 +1,5 @@
 import React, { ChangeEvent, DragEvent, useRef } from "react";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { useClickOutside } from "../hooks/useClickOutside";
 import { ProjectStatus, Todo } from "../model/todo.model";
 import { filterTodos } from "../util/util-functions";
@@ -64,51 +65,53 @@ const TodoList: React.FC<TodoListProps> = ({
 
   return (
     <ul ref={list === "active" ? ulRef : null}>
-      {filteredTodos.length !== 0
-        ? filteredTodos.map((todo) => {
+      {filteredTodos.length !== 0 ? (
+        <TransitionGroup>
+          {filteredTodos.map((todo) => {
             return !todo.isEditable ? (
-              <li
-                draggable="true"
-                key={todo.id}
-                className={`todo ${
-                  todo.status === 0 ? "active-todo" : "finished-todo"
-                }`}
-                onDragStart={(event) => dragStartHandler(event, todo.id)}
-              >
-                <div className="todo-primary-info">
-                  <div>
-                    <input
-                      checked={todo.status === 0 ? false : true}
-                      type="checkbox"
-                      className={todo.priority}
-                      onChange={(event) => {
-                        onToggleTodoStatus(todo.id, todo.status, event);
-                      }}
-                    />
-                    <span className="draggable">&#8285;&#8285;</span>
-                    <div>{todo.text}</div>
+              <CSSTransition key={todo.id} timeout={500} classNames="todo">
+                <li
+                  draggable="true"
+                  className={`todo ${
+                    todo.status === 0 ? "active-todo" : "finished-todo"
+                  }`}
+                  onDragStart={(event) => dragStartHandler(event, todo.id)}
+                >
+                  <div className="todo-primary-info">
+                    <div>
+                      <input
+                        checked={todo.status === 0 ? false : true}
+                        type="checkbox"
+                        className={todo.priority}
+                        onChange={(event) => {
+                          onToggleTodoStatus(todo.id, todo.status, event);
+                        }}
+                      />
+                      <span className="draggable">&#8285;&#8285;</span>
+                      <div>{todo.text}</div>
+                    </div>
+                    <div className="actions">
+                      <button
+                        data-tooltip="Edit"
+                        className="edit__btn"
+                        onClick={onEditableTodo.bind(null, todo.id)}
+                      >
+                        &#9998;
+                      </button>
+                      <button
+                        data-tooltip="Delete"
+                        className="delete__btn"
+                        onClick={onDeleteTodo.bind(null, todo.id)}
+                      >
+                        &#10006;
+                      </button>
+                    </div>
                   </div>
-                  <div className="actions">
-                    <button
-                      data-tooltip="Edit"
-                      className="edit__btn"
-                      onClick={onEditableTodo.bind(null, todo.id)}
-                    >
-                      &#9998;
-                    </button>
-                    <button
-                      data-tooltip="Delete"
-                      className="delete__btn"
-                      onClick={onDeleteTodo.bind(null, todo.id)}
-                    >
-                      &#10006;
-                    </button>
+                  <div className="todo-secondary-info">
+                    <span>{todo.date}</span>
                   </div>
-                </div>
-                <div className="todo-secondary-info">
-                  <span>{todo.date}</span>
-                </div>
-              </li>
+                </li>
+              </CSSTransition>
             ) : (
               <li key={todo.id}>
                 <NewTodo
@@ -119,8 +122,11 @@ const TodoList: React.FC<TodoListProps> = ({
                 />
               </li>
             );
-          })
-        : noTodos}
+          })}
+        </TransitionGroup>
+      ) : (
+        noTodos
+      )}
     </ul>
   );
 };

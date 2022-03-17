@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { CSSTransition } from "react-transition-group";
 
+import NewTodo from "../NewTodo";
 import { ProjectStatus, Todo } from "../../model/todo.model";
 import months from "../../data/months";
 import daysOfWeek from "../../data/daysOfWeek";
@@ -12,7 +14,6 @@ import {
 } from "../../util/util-functions";
 
 import "./ChangeMonth.css";
-import NewTodo from "../NewTodo";
 
 type ChangeMonthProps = {
   todos: Todo[];
@@ -38,10 +39,11 @@ const ChangeMonth: React.FC<ChangeMonthProps> = ({
 
   const [disablePreviousMonth, setDisablePreviousMonth] = useState(true);
 
-  const [onShowAddTodo, setOnShowAddTodo] = useState(false);
+  const [showAddBtn, setShowAddBtn] = useState(true);
+  const [showAddTodo, setshowAddTodo] = useState(false);
 
   const onToggleShowAddTodo = () => {
-    setOnShowAddTodo((prevState) => !prevState);
+    setshowAddTodo((prevState) => !prevState);
   };
 
   useEffect(() => {
@@ -151,12 +153,7 @@ const ChangeMonth: React.FC<ChangeMonthProps> = ({
     ) as string;
     onSetSelectedDay(selectedDay);
   };
-
-  let renderSelectedDay;
-
-  if (selectedDay) {
-    renderSelectedDay = <div className="selected-day">{selectedDay}</div>;
-  }
+  console.log(showAddTodo);
 
   return (
     <section className="default-layout">
@@ -201,8 +198,7 @@ const ChangeMonth: React.FC<ChangeMonthProps> = ({
           );
         })}
       </div>
-      {renderSelectedDay}
-      {onShowAddTodo ? (
+      {/* {showAddTodo ? (
         <NewTodo
           type="new"
           submitTodo={submitTodo}
@@ -211,9 +207,41 @@ const ChangeMonth: React.FC<ChangeMonthProps> = ({
         />
       ) : (
         <div className="show-add-todo">
-          <button onClick={onToggleShowAddTodo} data-tooltip="Add todo">+</button>
+          <button onClick={onToggleShowAddTodo} data-tooltip="Add todo">
+            +
+          </button>
+        </div>
+      )} */}
+
+      {showAddBtn && (
+        <div className="show-add-todo">
+          <button
+            onClick={() => {
+              setshowAddTodo(true);
+            }}
+            data-tooltip="Add todo"
+          >
+            +
+          </button>
         </div>
       )}
+      <CSSTransition
+        in={showAddTodo}
+        timeout={300}
+        classNames="new-todo"
+        unmountOnExit
+        onEnter={() => setShowAddBtn(false)}
+        onExited={() => {
+          setShowAddBtn(true);
+        }}
+      >
+        <NewTodo
+          type="new"
+          submitTodo={submitTodo}
+          selectedDay={selectedDay}
+          onToggleShowAddTodo={onToggleShowAddTodo}
+        />
+      </CSSTransition>
     </section>
   );
 };

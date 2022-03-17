@@ -1,10 +1,11 @@
 form {
   width: 100%;
   max-width: 40rem;
-  margin: 1rem auto 0rem;
+  margin: 0rem auto;
   background-color: var(--d-200);
   border-radius: var(--border-radius-10);
   padding: 1rem;
+  position: relative;
 }
 
 input,
