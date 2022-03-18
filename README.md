@@ -1,4 +1,4 @@
-# TypeScript To-do project
+# TypeScript To-do project [DEMO](https://stojiljkovicmarko.github.io/todo-app/)
 
 ### About the app
 
@@ -8,6 +8,8 @@ When you complete a task, it will be moved from ACTIVE section to FINISHED secti
 If you made a mistake, you can uncheck it.
 
 Every task on your list can be edited or deleted.
+
+*Tasks are stored locally in the browser.
 
 ### How to:
 
