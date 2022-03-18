@@ -100,9 +100,6 @@ const ChangeMonth: React.FC<ChangeMonthProps> = ({
 
   let firstDayOfMonth = actualDate.getDay() === 0 ? 7 : actualDate.getDay();
 
-  console.log(firstDayOfMonth);
-  console.log(actualDate);
-
   //zbog stampanja stavimo prvo dane koji ne pocinju od pocetka nedelje
   for (let i = 1; i < firstDayOfMonth; i++) {
     if (firstDayOfMonth !== 7) {

@@ -1,9 +1,9 @@
-import React, { ChangeEvent, DragEvent, useRef } from "react";
+import React, { ChangeEvent, useRef } from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { useClickOutside } from "../hooks/useClickOutside";
 import { ProjectStatus, Todo } from "../model/todo.model";
-import { filterTodos } from "../util/util-functions";
 import NewTodo from "./NewTodo";
+import { filterTodos } from "../util/util-functions";
 
 import "./TodoList.css";
 
@@ -35,13 +35,13 @@ const TodoList: React.FC<TodoListProps> = ({
   onUpdateTodo,
   onClickOutside,
 }) => {
-  const dragStartHandler = (
-    event: DragEvent<HTMLLIElement>,
-    todoId: string
-  ) => {
-    event.dataTransfer.setData("todo_id", todoId);
-    event.dataTransfer.effectAllowed = "move";
-  };
+  // const dragStartHandler = (
+  //   event: DragEvent<HTMLLIElement>,
+  //   todoId: string
+  // ) => {
+  //   event.dataTransfer.setData("todo_id", todoId);
+  //   event.dataTransfer.effectAllowed = "move";
+  // };
 
   let filteredTodos: Todo[] = [];
   let noTodos = <li></li>;
@@ -75,7 +75,7 @@ const TodoList: React.FC<TodoListProps> = ({
                   className={`todo ${
                     todo.status === 0 ? "active-todo" : "finished-todo"
                   }`}
-                  onDragStart={(event) => dragStartHandler(event, todo.id)}
+                  // onDragStart={(event) => dragStartHandler(event, todo.id)}
                 >
                   <div className="todo-primary-info">
                     <div>

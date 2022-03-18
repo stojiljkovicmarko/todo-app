@@ -1,4 +1,4 @@
-import React, { DragEvent } from "react";
+import React from "react";
 import { ProjectStatus } from "../model/todo.model";
 
 import "./TodoListLayout.css";
@@ -29,45 +29,45 @@ const TodoListLayout: React.FC<ListLayoutProps> = ({
       children
     );
 
-  const dragOverHandler = (event: DragEvent) => {
-    if (event.dataTransfer && event.dataTransfer.types[0] === "todo_id") {
-      event.preventDefault();
-      event.stopPropagation();
-      (event.currentTarget as HTMLDivElement).classList.add(
-        "drag-target-active"
-      );
-    }
-    return false;
-  };
+  // const dragOverHandler = (event: DragEvent) => {
+  //   if (event.dataTransfer && event.dataTransfer.types[0] === "todo_id") {
+  //     event.preventDefault();
+  //     event.stopPropagation();
+  //     (event.currentTarget as HTMLDivElement).classList.add(
+  //       "drag-target-active"
+  //     );
+  //   }
+  //   return false;
+  // };
 
-  const dropHandler = (event: DragEvent) => {
-    event.preventDefault();
-    const todoId = event.dataTransfer.getData("todo_id");
-    const layoutClass = (event.currentTarget as HTMLDivElement).classList[1];
-    let status = ProjectStatus.Active;
-    if (layoutClass === "finished") {
-      status = ProjectStatus.Finished;
-    }
-    changeTodoStateDrag(todoId, status);
-    (event.currentTarget as HTMLDivElement).classList.remove(
-      "drag-target-active"
-    );
-  };
+  // const dropHandler = (event: DragEvent) => {
+  //   event.preventDefault();
+  //   const todoId = event.dataTransfer.getData("todo_id");
+  //   const layoutClass = (event.currentTarget as HTMLDivElement).classList[1];
+  //   let status = ProjectStatus.Active;
+  //   if (layoutClass === "finished") {
+  //     status = ProjectStatus.Finished;
+  //   }
+  //   changeTodoStateDrag(todoId, status);
+  //   (event.currentTarget as HTMLDivElement).classList.remove(
+  //     "drag-target-active"
+  //   );
+  // };
 
-  const dragLeaveHandler = (event: DragEvent) => {
-    (event.currentTarget as HTMLDivElement).classList.remove(
-      "drag-target-active"
-    );
-  };
+  // const dragLeaveHandler = (event: DragEvent) => {
+  //   (event.currentTarget as HTMLDivElement).classList.remove(
+  //     "drag-target-active"
+  //   );
+  // };
 
   return (
     <div
       className={`todos-layout ${
         isActive ? "layout-active" : "layout-finished"
       }`}
-      onDragOver={(event) => dragOverHandler(event)}
-      onDrop={(event) => dropHandler(event)}
-      onDragLeave={(event) => dragLeaveHandler(event)}
+      // onDragOver={(event) => dragOverHandler(event)}
+      // onDrop={(event) => dropHandler(event)}
+      // onDragLeave={(event) => dragLeaveHandler(event)}
     >
       <h2
         className={
