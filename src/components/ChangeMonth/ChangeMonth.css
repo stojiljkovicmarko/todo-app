@@ -81,6 +81,12 @@
 }
 
 .today {
+  border: 1px solid var(--interactive-color-hover);
+  border-radius: var(--border-radius-10);
+  background-color: transparent;
+}
+
+.day-selected {
   background-color: var(--interactive-color-active);
 }
 
@@ -89,32 +95,6 @@
   border-radius: 15px;
   background-color: gray;
   pointer-events: none;
-}
-
-.day-selected {
-  background-color: var(--d-300);
-}
-
-.selected-day {
-  margin-top: 1rem;
-  font-size: 1.4rem;
-  position: relative;
-  border-top: 1px solid var(--d-400);
-  padding-top: 1.2rem;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--p3);
-}
-
-.selected-day::after {
-  content: "SELECTED DAY";
-  font-size: 0.7rem;
-  color: var(--d-400);
-  position: absolute;
-  top: 45px;
-  margin-top: 0.2rem;
 }
 
 .show-add-todo {

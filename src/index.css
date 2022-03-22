@@ -10,7 +10,6 @@ html {
   padding: 0;
 }
 
-
 body {
   background-color: var(--d-100);
   color: var(--primary-color);
@@ -46,8 +45,8 @@ button:disabled:hover {
 }
 
 :root {
-  --d-100: hsl(0, 0%, 13%);
-  --d-200: hsl(199, 19%, 30%);
+  --d-100: #212121;
+  --d-200: #3e525b;
   --d-300: rgb(99, 130, 146);
   --d-400: rgb(150, 171, 181);
 
@@ -57,7 +56,8 @@ button:disabled:hover {
   --interactive-color-hover: #24a7ff;
   --interactive-color-active: #0071bd;
   --disabled-color: #cfd8dc;
-  --error-color: rgb(255, 158, 158);
+  --error-color: #ff9e9e;
+  --overdue-todos-heading: #ff925f;
   --active-todos-heading: #03dac5;
   --finished-todos-heading: rgb(187, 134, 252);
 

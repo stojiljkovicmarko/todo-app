@@ -1,7 +1,5 @@
 .todos-layout {
-  width: 90%;
-  max-width: 40rem;
-  margin: 1rem auto;
+  width: 100%;
   padding-bottom: 0.1rem;
   background-color: var(--d-200);
   border-radius: var(--border-radius-10);
@@ -11,9 +9,7 @@
 h2 {
   padding: 1rem 0;
   background-color: var(--d-300);
-  color: var(--secondary-color);
-  border-top-left-radius: var(--border-radius-10);
-  border-top-right-radius: var(--border-radius-10);
+  color: var(--d-100);
 }
 
 .active-layout-heading {
@@ -24,18 +20,13 @@ h2 {
   background-color: var(--finished-todos-heading);
 }
 
+.overdue-layout-heading {
+  background-color: var(--overdue-todos-heading);
+}
+
 .drag-target-active {
   border: 2px solid white;
   background-color: var(--d-300);
-}
-
-.todos-layout p {
-  width: 90%;
-  margin: 1rem auto;
-  padding: 1rem;
-  text-align: center;
-  background-color: var(--d-200);
-  border-radius: 6px;
 }
 
 .droppable {
