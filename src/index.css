@@ -1,0 +1,86 @@
+html {
+  font-family: sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--d-100);
+  color: var(--primary-color);
+}
+
+.default-layout {
+  width: 90%;
+  max-width: 40rem;
+  margin: 1rem auto;
+  padding: 1.5rem;
+  background-color: var(--d-200);
+  border-radius: var(--border-radius-10);
+}
+
+button {
+  background-color: var(--interactive-color);
+}
+
+button:hover {
+  background-color: var(--interactive-color-hover);
+}
+
+button:active {
+  background-color: var(--interactive-color-active);
+}
+
+button:disabled,
+button:disabled:hover {
+  background-color: var(--d-300);
+  color: black;
+  border: none;
+  cursor: not-allowed;
+}
+
+:root {
+  --d-100: #212121;
+  --d-200: #3e525b;
+  --d-300: rgb(99, 130, 146);
+  --d-400: rgb(150, 171, 181);
+
+  --primary-color: #ffffff;
+  --secondary-color: #eceff1;
+  --interactive-color: rgb(0, 144, 240);
+  --interactive-color-hover: #24a7ff;
+  --interactive-color-active: #0071bd;
+  --disabled-color: #cfd8dc;
+  --error-color: #ff9e9e;
+  --overdue-todos-heading: #ff925f;
+  --active-todos-heading: #03dac5;
+  --finished-todos-heading: rgb(187, 134, 252);
+
+  --border-radius-10: 10px;
+
+  --p1: #f797af;
+  --p1-hover: hsl(345, 86%, 68%);
+  --p2: #16ca49;
+  --p2-hover: hsl(137, 80%, 34%);
+  --p3: #ffa12e;
+  --p3-hover: hsl(33, 100%, 49%);
+  --p4: #96acb6;
+  --p4-hover: hsl(199, 18%, 55%);
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 0.8rem;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #ffffff;
+  }
+}

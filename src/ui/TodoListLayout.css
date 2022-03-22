@@ -1,0 +1,35 @@
+.todos-layout {
+  width: 100%;
+  padding-bottom: 0.1rem;
+  background-color: var(--d-200);
+  border-radius: var(--border-radius-10);
+  text-align: center;
+}
+
+h2 {
+  padding: 1rem 0;
+  background-color: var(--d-300);
+  color: var(--d-100);
+}
+
+.active-layout-heading {
+  background-color: var(--active-todos-heading);
+}
+
+.finished-layout-heading {
+  background-color: var(--finished-todos-heading);
+}
+
+.overdue-layout-heading {
+  background-color: var(--overdue-todos-heading);
+}
+
+.drag-target-active {
+  border: 2px solid white;
+  background-color: var(--d-300);
+}
+
+.droppable {
+  border: 2px solid white;
+  background-color: var(--d-300);
+}
