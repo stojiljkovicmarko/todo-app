@@ -43,20 +43,35 @@ const TodoList: React.FC<TodoListProps> = ({
   //   event.dataTransfer.effectAllowed = "move";
   // };
 
-  let filteredTodos: Todo[] = [];
-  let noTodos = <li></li>;
+  let todos: { filtered: Todo[]; status: string; noTodos: JSX.Element } = {
+    filtered: [],
+    status: "",
+    noTodos: <li></li>,
+  };
 
-  if (list === "active") {
-    filteredTodos = filterTodos(items, ProjectStatus.Active);
-    noTodos = (
-      <li>
-        Start being productive today.
-        <br /> Add some tasks to your list.
-      </li>
-    );
+  if (list === "overdue") {
+    todos = {
+      filtered: filterTodos(items, ProjectStatus.Overdue),
+      status: "overdue",
+      noTodos: <p>No overdue tasks.</p>,
+    };
+  } else if (list === "active") {
+    todos = {
+      filtered: filterTodos(items, ProjectStatus.Active),
+      status: "active",
+      noTodos: (
+        <p>
+          Start being productive today.
+          <br /> Add some tasks to your list.
+        </p>
+      ),
+    };
   } else {
-    filteredTodos = filterTodos(items, ProjectStatus.Finished);
-    noTodos = <li>All finished. Well done!</li>;
+    todos = {
+      filtered: filterTodos(items, ProjectStatus.Finished),
+      status: "finished",
+      noTodos: <p>All finished. Well done!</p>,
+    };
   }
 
   const ulRef = useRef<HTMLUListElement>(null);
@@ -64,23 +79,21 @@ const TodoList: React.FC<TodoListProps> = ({
   useClickOutside(ulRef, onClickOutside);
 
   return (
-    <ul ref={list === "active" ? ulRef : null}>
-      {filteredTodos.length !== 0 ? (
+    <ul ref={ulRef}>
+      {todos.filtered.length !== 0 ? (
         <TransitionGroup>
-          {filteredTodos.map((todo) => {
+          {todos.filtered.map((todo) => {
             return !todo.isEditable ? (
-              <CSSTransition key={todo.id} timeout={500} classNames="todo">
+              <CSSTransition key={todo.id} timeout={300} classNames="todo">
                 <li
                   draggable="true"
-                  className={`todo ${
-                    todo.status === 0 ? "active-todo" : "finished-todo"
-                  }`}
+                  className={`todo ${todos.status}`}
                   // onDragStart={(event) => dragStartHandler(event, todo.id)}
                 >
                   <div className="todo-primary-info">
                     <div>
                       <input
-                        checked={todo.status === 0 ? false : true}
+                        checked={todo.status === 0 || 2 ? false : true}
                         type="checkbox"
                         className={todo.priority}
                         onChange={(event) => {
@@ -88,7 +101,7 @@ const TodoList: React.FC<TodoListProps> = ({
                         }}
                       />
                       <span className="draggable">&#8285;&#8285;</span>
-                      <div>{todo.text}</div>
+                      <div className="todo-text">{todo.text}</div>
                     </div>
                     <div className="actions">
                       <button
@@ -125,7 +138,7 @@ const TodoList: React.FC<TodoListProps> = ({
           })}
         </TransitionGroup>
       ) : (
-        noTodos
+        todos.noTodos
       )}
     </ul>
   );

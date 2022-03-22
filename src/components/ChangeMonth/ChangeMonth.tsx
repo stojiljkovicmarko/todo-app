@@ -153,7 +153,6 @@ const ChangeMonth: React.FC<ChangeMonthProps> = ({
     ) as string;
     onSetSelectedDay(selectedDay);
   };
-  console.log(showAddTodo);
 
   return (
     <section className="default-layout">

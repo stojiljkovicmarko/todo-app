@@ -8,6 +8,8 @@ import TodoListLayout from "./ui/TodoListLayout";
 
 import { stringifyDate } from "./util/util-functions";
 import ChangeMonth from "./components/ChangeMonth/ChangeMonth";
+import TodosContainer from "./components/TodosContainer/TodosContainer";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>(() => {
@@ -43,10 +45,12 @@ const App: React.FC = () => {
       const todoDate = new Date(todo.fullDate).getTime();
       if (todoDate < today) {
         hasChange = true;
-        return {
-          ...todo,
-          status: ProjectStatus.Overdue,
-        };
+        if (todo.status !== ProjectStatus.Finished) {
+          return {
+            ...todo,
+            status: ProjectStatus.Overdue,
+          };
+        }
       }
       return todo;
     });
@@ -55,6 +59,8 @@ const App: React.FC = () => {
       setTodos(newTodos);
     }
   }, []);
+
+  const navigate = useNavigate();
 
   const todoAddHandler = (text: string, date: Date, priority: string) => {
     setTodos((prevTodos) => {
@@ -72,9 +78,11 @@ const App: React.FC = () => {
         },
       ];
     });
+    setSelectedDay(stringifyDate(date));
+    navigate("/todo-app/active");
   };
 
-  //change map to find faster
+  //change map to find to find faster
   const todoUpdateHandler = (
     text: string,
     date: Date,
@@ -113,18 +121,6 @@ const App: React.FC = () => {
     });
   };
 
-  // THIS IS FOR DRAG
-  const changeTodoStateHandler = (todoId: string, status: ProjectStatus) => {
-    const todoIndex = todos.findIndex((todo) => todo.id === todoId);
-    const newTodos = [...todos];
-    const newTodo: Todo = todos[todoIndex];
-    status !== ProjectStatus.Active
-      ? (newTodo.status = ProjectStatus.Finished)
-      : (newTodo.status = ProjectStatus.Active);
-    newTodos[todoIndex] = newTodo;
-    setTodos(newTodos);
-  };
-
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
@@ -150,46 +146,82 @@ const App: React.FC = () => {
     });
   };
 
-  console.log(todos);
-
   return (
     <>
-      <div className="App">
-        <ChangeMonth
-          todos={todos}
-          selectedDay={selectedDay}
-          onSetSelectedDay={onSetSelectedDay}
-          submitTodo={todoAddHandler}
-        />
-        <TodoListLayout
-          type={"active"}
-          changeTodoStateDrag={changeTodoStateHandler}
-        >
-          <TodoList
-            list={"active"}
-            items={filteredTodos}
-            onToggleTodoStatus={toggleTodoStatus}
-            onDeleteTodo={todoDeleteHandler}
-            onEditableTodo={isEditableHandler}
-            onUpdateTodo={todoUpdateHandler}
-            onClickOutside={clickOutsideHandler}
+      <ChangeMonth
+        todos={todos}
+        selectedDay={selectedDay}
+        onSetSelectedDay={onSetSelectedDay}
+        submitTodo={todoAddHandler}
+      />
+      <TodosContainer>
+        <Routes>
+          <Route
+            path="todo-app/overdue"
+            element={
+              <TodoListLayout type={"overdue"}>
+                <TodoList
+                  list={"overdue"}
+                  items={todos}
+                  onToggleTodoStatus={toggleTodoStatus}
+                  onDeleteTodo={todoDeleteHandler}
+                  onEditableTodo={isEditableHandler}
+                  onUpdateTodo={todoUpdateHandler}
+                  onClickOutside={clickOutsideHandler}
+                />
+              </TodoListLayout>
+            }
           />
-        </TodoListLayout>
-        <TodoListLayout
-          type={"finished"}
-          changeTodoStateDrag={changeTodoStateHandler}
-        >
-          <TodoList
-            list={"finished"}
-            items={filteredTodos}
-            onToggleTodoStatus={toggleTodoStatus}
-            onDeleteTodo={todoDeleteHandler}
-            onEditableTodo={isEditableHandler}
-            onUpdateTodo={todoUpdateHandler}
-            onClickOutside={clickOutsideHandler}
+          <Route
+            path="todo-app/active"
+            element={
+              <TodoListLayout type={"active"}>
+                <TodoList
+                  list={"active"}
+                  items={filteredTodos}
+                  onToggleTodoStatus={toggleTodoStatus}
+                  onDeleteTodo={todoDeleteHandler}
+                  onEditableTodo={isEditableHandler}
+                  onUpdateTodo={todoUpdateHandler}
+                  onClickOutside={clickOutsideHandler}
+                />
+              </TodoListLayout>
+            }
           />
-        </TodoListLayout>
-      </div>
+          <Route
+            path="todo-app/finished"
+            element={
+              <TodoListLayout type={"finished"}>
+                <TodoList
+                  list={"finished"}
+                  items={filteredTodos}
+                  onToggleTodoStatus={toggleTodoStatus}
+                  onDeleteTodo={todoDeleteHandler}
+                  onEditableTodo={isEditableHandler}
+                  onUpdateTodo={todoUpdateHandler}
+                  onClickOutside={clickOutsideHandler}
+                />
+              </TodoListLayout>
+            }
+          />
+          <Route
+            path="/*"
+            element={
+              <TodoListLayout type={"overdue"}>
+                <TodoList
+                  list={"overdue"}
+                  items={todos}
+                  onToggleTodoStatus={toggleTodoStatus}
+                  onDeleteTodo={todoDeleteHandler}
+                  onEditableTodo={isEditableHandler}
+                  onUpdateTodo={todoUpdateHandler}
+                  onClickOutside={clickOutsideHandler}
+                />
+              </TodoListLayout>
+            }
+          />
+        </Routes>
+      </TodosContainer>
     </>
   );
 };
