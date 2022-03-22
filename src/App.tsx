@@ -207,10 +207,10 @@ const App: React.FC = () => {
           <Route
             path="/*"
             element={
-              <TodoListLayout type={"overdue"}>
+              <TodoListLayout type={"active"}>
                 <TodoList
-                  list={"overdue"}
-                  items={todos}
+                  list={"active"}
+                  items={filteredTodos}
                   onToggleTodoStatus={toggleTodoStatus}
                   onDeleteTodo={todoDeleteHandler}
                   onEditableTodo={isEditableHandler}

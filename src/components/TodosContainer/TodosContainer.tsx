@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import "./TodosContainer.css";
 
 const TodosContainer: React.FC<{}> = ({ children }) => {
   const location = useLocation();
-  const [activeLink, setActiveLink] = useState(location.pathname.split("/")[2]);
+  const [activeLink, setActiveLink] = useState("active");
 
-  console.log("render...");
+  useEffect(() => {
+    setActiveLink(location.pathname.split("/")[2]);
+  }, [location.pathname, setActiveLink]);
+
+  console.log(activeLink);
 
   return (
     <div className="todos-container">

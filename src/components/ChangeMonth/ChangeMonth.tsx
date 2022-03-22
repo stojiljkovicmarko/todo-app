@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { CSSTransition } from "react-transition-group";
 
 import NewTodo from "../NewTodo";
@@ -41,6 +42,8 @@ const ChangeMonth: React.FC<ChangeMonthProps> = ({
 
   const [showAddBtn, setShowAddBtn] = useState(true);
   const [showAddTodo, setshowAddTodo] = useState(false);
+
+  const navigate = useNavigate();
 
   const onToggleShowAddTodo = () => {
     setshowAddTodo((prevState) => !prevState);
@@ -152,6 +155,7 @@ const ChangeMonth: React.FC<ChangeMonthProps> = ({
       "day-value"
     ) as string;
     onSetSelectedDay(selectedDay);
+    navigate("/todo-app/active");
   };
 
   return (
@@ -197,20 +201,6 @@ const ChangeMonth: React.FC<ChangeMonthProps> = ({
           );
         })}
       </div>
-      {/* {showAddTodo ? (
-        <NewTodo
-          type="new"
-          submitTodo={submitTodo}
-          selectedDay={selectedDay}
-          onToggleShowAddTodo={onToggleShowAddTodo}
-        />
-      ) : (
-        <div className="show-add-todo">
-          <button onClick={onToggleShowAddTodo} data-tooltip="Add todo">
-            +
-          </button>
-        </div>
-      )} */}
 
       {showAddBtn && (
         <div className="show-add-todo">

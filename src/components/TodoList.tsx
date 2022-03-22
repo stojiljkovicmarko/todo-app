@@ -53,24 +53,24 @@ const TodoList: React.FC<TodoListProps> = ({
     todos = {
       filtered: filterTodos(items, ProjectStatus.Overdue),
       status: "overdue",
-      noTodos: <p>No overdue tasks.</p>,
+      noTodos: <li>No overdue tasks.</li>,
     };
   } else if (list === "active") {
     todos = {
       filtered: filterTodos(items, ProjectStatus.Active),
       status: "active",
       noTodos: (
-        <p>
+        <li>
           Start being productive today.
           <br /> Add some tasks to your list.
-        </p>
+        </li>
       ),
     };
   } else {
     todos = {
       filtered: filterTodos(items, ProjectStatus.Finished),
       status: "finished",
-      noTodos: <p>All finished. Well done!</p>,
+      noTodos: <li>All finished. Well done!</li>,
     };
   }
 
