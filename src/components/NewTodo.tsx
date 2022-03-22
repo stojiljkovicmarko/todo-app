@@ -88,7 +88,7 @@ const NewTodo: React.FC<TodoAddProps> = (props) => {
               : props.onToggleShowAddTodo!()
           }
         >
-          Cancel
+          Close
         </button>
       </div>
     </form>

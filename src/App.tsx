@@ -157,7 +157,7 @@ const App: React.FC = () => {
       <TodosContainer>
         <Routes>
           <Route
-            path="todo-app/overdue"
+            path="/todo-app/overdue"
             element={
               <TodoListLayout type={"overdue"}>
                 <TodoList
@@ -173,7 +173,7 @@ const App: React.FC = () => {
             }
           />
           <Route
-            path="todo-app/active"
+            path="/todo-app/active"
             element={
               <TodoListLayout type={"active"}>
                 <TodoList
@@ -189,7 +189,7 @@ const App: React.FC = () => {
             }
           />
           <Route
-            path="todo-app/finished"
+            path="/todo-app/finished"
             element={
               <TodoListLayout type={"finished"}>
                 <TodoList
