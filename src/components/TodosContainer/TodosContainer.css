@@ -1,10 +1,11 @@
 .todos-container {
-  width: 90%;
+  width: 95%;
   max-width: 40rem;
   margin: 1rem auto;
   padding-bottom: 0.1rem;
   background-color: var(--d-200);
   border-radius: var(--border-radius-10);
+  box-shadow: var(--box-shadow);
 }
 
 nav {
@@ -17,6 +18,7 @@ nav {
 nav ul {
   display: flex;
   justify-content: center;
+  position: relative;
   gap: 0.2rem;
   margin: 0;
 }
@@ -32,11 +34,11 @@ nav ul li {
 nav a {
   width: 100%;
   text-decoration: none;
-  padding: 0.6rem 1.4rem;
+  padding: 0.6rem 1.2rem;
 }
 a:active,
 a:visited {
-  color: white;
+  color: var(--primary-color);
 }
 
 .active-link-overdue {

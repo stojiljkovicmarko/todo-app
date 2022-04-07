@@ -11,8 +11,6 @@ const TodosContainer: React.FC<{}> = ({ children }) => {
     setActiveLink(location.pathname.split("/")[2]);
   }, [location.pathname, setActiveLink]);
 
-  console.log(activeLink);
-
   return (
     <div className="todos-container">
       <nav>

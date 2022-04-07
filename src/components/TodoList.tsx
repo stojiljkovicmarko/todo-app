@@ -80,6 +80,7 @@ const TodoList: React.FC<TodoListProps> = ({
 
   return (
     <ul ref={ulRef}>
+      <li className="badge">{todos.filtered.length} </li>
       {todos.filtered.length !== 0 ? (
         <TransitionGroup>
           {todos.filtered.map((todo) => {

@@ -67,7 +67,7 @@
 }
 
 .day:hover {
-  background-color: var(--d-300);
+  background-color: var(--interactive-color-active);
 }
 
 .day-todo::before {

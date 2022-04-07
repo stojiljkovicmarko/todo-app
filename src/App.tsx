@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
-
-import TodoList from "./components/TodoList";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import { ProjectStatus, Todo } from "./model/todo.model";
 
-import TodoListLayout from "./ui/TodoListLayout";
-
-import { stringifyDate } from "./util/util-functions";
+import TodoList from "./components/TodoList";
 import ChangeMonth from "./components/ChangeMonth/ChangeMonth";
 import TodosContainer from "./components/TodosContainer/TodosContainer";
-import { Routes, Route, useNavigate } from "react-router-dom";
+
+import TodoListLayout from "./ui/TodoListLayout";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
+
+import { stringifyDate } from "./util/util-functions";
 
 const App: React.FC = () => {
+  const [theme, setTheme] = useState("dark");
+
   const [todos, setTodos] = useState<Todo[]>(() => {
     const savedTodos = localStorage.getItem("todos");
     let initialTodos: Todo[] = [];
@@ -58,7 +62,7 @@ const App: React.FC = () => {
     if (hasChange) {
       setTodos(newTodos);
     }
-  }, []);
+  }, [todos]);
 
   const navigate = useNavigate();
 
@@ -146,8 +150,22 @@ const App: React.FC = () => {
     });
   };
 
+  const toggleTheme = () => {
+    theme === "dark" ? setTheme("light") : setTheme("dark");
+  };
+
   return (
-    <>
+    <div className={`theme ${theme}`}>
+      <div className="theme-btn-container">
+        <button onClick={toggleTheme} className="theme-btn">
+          {" "}
+          {theme === "dark" ? (
+            <FontAwesomeIcon className="fa" icon={faSun} />
+          ) : (
+            <FontAwesomeIcon className="fa" icon={faMoon} />
+          )}{" "}
+        </button>
+      </div>
       <ChangeMonth
         todos={todos}
         selectedDay={selectedDay}
@@ -222,7 +240,7 @@ const App: React.FC = () => {
           />
         </Routes>
       </TodosContainer>
-    </>
+    </div>
   );
 };
 

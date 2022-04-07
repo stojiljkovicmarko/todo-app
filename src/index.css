@@ -10,18 +10,22 @@ html {
   padding: 0;
 }
 
-body {
+.theme {
   background-color: var(--d-100);
   color: var(--primary-color);
+  min-height: 100vh;
+  height: 100%;
+  padding: 0rem 0 0.2rem;
 }
 
 .default-layout {
-  width: 90%;
+  width: 95%;
   max-width: 40rem;
   margin: 1rem auto;
-  padding: 1.5rem;
+  padding: 1.2rem;
   background-color: var(--d-200);
   border-radius: var(--border-radius-10);
+  box-shadow: var(--box-shadow);
 }
 
 button {
@@ -44,6 +48,32 @@ button:disabled:hover {
   cursor: not-allowed;
 }
 
+.theme-btn-container {
+  max-width: 40rem;
+  width: 95%;
+  display: flex;
+  justify-content: end;
+  margin: 0 auto;
+  position: relative;
+}
+
+.theme-btn {
+  border: none;
+  padding: 0.4rem 0.8rem;
+  box-shadow: var(--box-shadow);
+  color: var(--primary-color);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  top: 2px;
+  right: -3px;
+  padding: 0;
+  position: absolute;
+}
+.fa {
+  transform: scale(1.4);
+}
+
 :root {
   --d-100: #212121;
   --d-200: #3e525b;
@@ -60,6 +90,7 @@ button:disabled:hover {
   --overdue-todos-heading: #ff925f;
   --active-todos-heading: #03dac5;
   --finished-todos-heading: rgb(187, 134, 252);
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 
   --border-radius-10: 10px;
 
@@ -73,14 +104,40 @@ button:disabled:hover {
   --p4-hover: hsl(199, 18%, 55%);
 }
 
+.light {
+  --d-100: rgb(235, 235, 235);
+  --d-200: rgb(239, 239, 239);
+  --d-300: rgb(99, 130, 146);
+  --d-400: rgb(150, 171, 181);
+
+  --primary-color: #212121;
+  --secondary-color: #3e525b;
+  --interactive-color: hsl(204, 100%, 47%);
+  --interactive-color-hover: #24a7ff;
+  --interactive-color-active: hsl(204, 100%, 57%);
+  --disabled-color: #cfd8dc;
+  --error-color: hsl(0, 100%, 71%);
+  --overdue-todos-heading: hsl(19, 100%, 59%);
+  --active-todos-heading: hsl(174, 97%, 33%);
+  --finished-todos-heading: hsl(267, 95%, 66%);
+
+  --p1: hsl(345, 76%, 58%);
+  --p1-hover: hsl(345, 76%, 48%);
+  --p2: hsl(137, 80%, 44%);
+  --p2-hover: hsl(137, 80%, 34%);
+  --p3: hsl(33, 90%, 59%);
+  --p3-hover: hsl(33, 90%, 49%);
+  --p4: hsl(199, 18%, 65%);
+  --p4-hover: hsl(199, 18%, 55%);
+}
+
 @media (max-width: 600px) {
   body {
     font-size: 0.8rem;
   }
-}
 
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: #ffffff;
+  .theme-btn {
+    width: 40px;
+    height: 40px;
   }
 }

@@ -5,6 +5,7 @@ ul {
   margin: 2rem auto;
   padding: 0;
   border-radius: var(--border-radius-10);
+  position: relative;
 }
 
 .draggable {
@@ -235,4 +236,17 @@ input[type="checkbox"]:checked:hover {
 }
 .todo-exit-active {
   transition-duration: 0ms;
+}
+
+.badge {
+  position: absolute;
+  width: fit-content;
+  right: -10px;
+  top: -70px;
+  padding: 0.8rem 1.4rem;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 120%;
+  color: var(--primary-color);
+  background-color: var(--d-200);
 }
