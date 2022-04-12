@@ -52,7 +52,7 @@ button:disabled:hover {
   max-width: 40rem;
   width: 95%;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin: 0 auto;
   position: relative;
 }
@@ -70,6 +70,7 @@ button:disabled:hover {
   padding: 0;
   position: absolute;
 }
+
 .fa {
   transform: scale(1.4);
 }
@@ -125,8 +126,8 @@ button:disabled:hover {
   --p1-hover: hsl(345, 76%, 48%);
   --p2: hsl(137, 80%, 44%);
   --p2-hover: hsl(137, 80%, 34%);
-  --p3: hsl(33, 90%, 59%);
-  --p3-hover: hsl(33, 90%, 49%);
+  --p3: hsl(33, 90%, 49%);
+  --p3-hover: hsl(33, 90%, 59%);
   --p4: hsl(199, 18%, 65%);
   --p4-hover: hsl(199, 18%, 55%);
 }

@@ -62,7 +62,7 @@ const App: React.FC = () => {
     if (hasChange) {
       setTodos(newTodos);
     }
-  }, [todos]);
+  }, []);
 
   const navigate = useNavigate();
 

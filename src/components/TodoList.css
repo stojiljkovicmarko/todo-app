@@ -40,7 +40,7 @@ li .todo-primary-info div:first-child {
 li .todo-secondary-info {
   font-size: 0.7rem;
   font-weight: bold;
-  color: bisque;
+  color: var(--p3);
   padding-left: 1.5rem;
 }
 
@@ -128,6 +128,7 @@ li .delete__btn:hover::after {
 input[type="checkbox"] {
   appearance: none;
   background-color: var(--d-200);
+  padding: 0;
   margin: 0 0.5rem 0 0;
   border-radius: 50%;
   width: 1.3rem;

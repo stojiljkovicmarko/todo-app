@@ -8,8 +8,11 @@ const TodosContainer: React.FC<{}> = ({ children }) => {
   const [activeLink, setActiveLink] = useState("active");
 
   useEffect(() => {
-    setActiveLink(location.pathname.split("/")[2]);
+    let path = location.pathname.split("/")[2] ?? "active";
+    setActiveLink(path);
   }, [location.pathname, setActiveLink]);
+
+  console.log(activeLink);
 
   return (
     <div className="todos-container">

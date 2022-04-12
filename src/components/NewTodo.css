@@ -11,11 +11,12 @@ form {
 input,
 select {
   background-color: var(--d-100);
-  padding: 0.3rem 0.6rem;
+  color: var(--primary-color);
+  padding: 0.4rem 0.8rem;
   margin-bottom: 0.6rem;
   border-radius: 10px;
   cursor: pointer;
-  border-color: transparent;
+  border: 1px solid var(--d-400);
   transition: all 0.2s ease-in;
 }
 
