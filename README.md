@@ -35,11 +35,11 @@ I am planning on adding more features to the app and some nice transitions and a
 Future functionalities include:
 
 - Changing the drag and drop implementation to rearrange only active tasks
-- Adding OVERDUE section with tasks that are not finished before today (current day)
+- Adding OVERDUE section with tasks that are not finished before today (current day)DONE
 - Adding React Router to switch between views for Overdue, Active and Finished todos
 - Changing tasks visually in order to have more difference between tasks priorities
 - Adding desription to tasks
 - Adding tags to tasks
 - Sorting todos by priority or tags
 - History of finished todos
-- Counter to keep track of finished tasks
+- Counter to keep track of finished tasks DONE
